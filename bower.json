@@ -1,0 +1,27 @@
+{
+  "name": "fluro.access",
+  "description": "A client side service for checking fluro permissions",
+  "homepage": "http://fluro.io",
+  "authors": [
+    "Cade Embery"
+  ],
+  "main": "./dist/fluro.access.min.js",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Hyperblaster/fluro.access.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.14",
+    "angular-resource": "^1.3.0",
+    "fluro.content": "*",
+    "lodash": "*"
+  }
+}
