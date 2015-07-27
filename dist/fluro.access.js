@@ -11,18 +11,32 @@ angular.module('fluro.access')
     /////////////////////////////////////////////////////
 
     controller.isFluroAdmin = function() {
+
+        if(!$rootScope.user) {
+            return false;
+        }
         return ($rootScope.user.accountType == 'administrator');
     }
 
     ///////////////////////////////////////////////////////////////////////////////
 
     controller.getPermissionSets = function() {
+
+        if(!$rootScope.user) {
+            return [];
+        }
+
         return $rootScope.user.permissionSets;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
 
     controller.has = function(permission) {
+
+        if(!$rootScope.user) {
+            return false;
+        }
+
         var permissionSets = $rootScope.user.permissionSets;
 
         var permissions = _.chain(permissionSets)
@@ -41,6 +55,10 @@ angular.module('fluro.access')
     /////////////////////////////////////////////////////
 
     controller.canAccess = function(type) {
+
+        if(!$rootScope.user) {
+            return false;
+        }
 
         if (controller.isFluroAdmin()) {
             return true;
@@ -75,6 +93,10 @@ angular.module('fluro.access')
 
     controller.retrieveActionableRealms = function(action) {
 
+        if(!$rootScope.user) {
+            return [];
+        }
+
         /////////////////////////////////
 
         //Get the permission sets
@@ -96,6 +118,9 @@ angular.module('fluro.access')
     /////////////////////////////////////////////////////
 
     controller.retrieveSelectableRealms = function(action) {
+        if(!$rootScope.user) {
+            return [];
+        }
 
         var realms;
 
@@ -134,6 +159,10 @@ angular.module('fluro.access')
 
     //Function to check if this user has this permission
     controller.can = function(action, type) {
+
+        if(!$rootScope.user) {
+            return false;
+        }
 
         if (controller.isFluroAdmin()) {
             return true;
@@ -181,6 +210,11 @@ angular.module('fluro.access')
     /////////////////////////////////////////////////////
 
     controller.isAuthor = function(item) {
+
+        if(!$rootScope.user) {
+            return false;
+        }
+
         //Check if the user is the author
         var author = false;
 
@@ -205,6 +239,9 @@ angular.module('fluro.access')
 
     controller.canEditItem = function(item, user) {
 
+        if(!$rootScope.user) {
+            return false;
+        }
 
         if (controller.isFluroAdmin()) {
             return true;
@@ -285,6 +322,10 @@ angular.module('fluro.access')
 
     controller.canViewItem = function(item, user) {
 
+        if(!$rootScope.user) {
+            return false
+        }
+
         if (controller.isFluroAdmin()) {
             return true;
         }
@@ -364,6 +405,10 @@ angular.module('fluro.access')
 
     controller.canDeleteItem = function(item, user) {
 
+        if(!$rootScope.user) {
+            return false
+        }
+        
         if (controller.isFluroAdmin()) {
             return true;
         }
