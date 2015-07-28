@@ -297,9 +297,9 @@ angular.module('fluro.access')
 
 
         if(definitionName) {
-            console.log('TESTING ACCESS', definitionName, matchedAnyRealms);
+            console.log('TESTING ACCESS', definitionName, matchedAnyRealms.length);
         }
-        
+
         //We are allowed to edit anything in these realms
         //So return true
         if (matchedAnyRealms.length) {
