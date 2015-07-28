@@ -251,8 +251,6 @@ angular.module('fluro.access')
             return false;
         }
 
-
-
         var definitionName = item._type;
 
         if (item.definition) {
@@ -290,6 +288,8 @@ angular.module('fluro.access')
             //No realms associated with this content
         }
 
+        console.log(definitionName, editAnyRealms, editOwnRealms);
+
         ////////////////////////////////////////
 
         //Find any matches between this content
@@ -300,7 +300,6 @@ angular.module('fluro.access')
         if (matchedAnyRealms.length) {
             return true;
         }
-
 
         ////////////////////////////////////////
 
