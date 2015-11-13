@@ -126,7 +126,8 @@ angular.module('fluro.access')
 
         if (controller.isFluroAdmin()) {
             realms = FluroContent.resource('realm').query({
-                list: true
+                list: true,
+                sort:'title'
             });
         } else {
 
