@@ -47,7 +47,7 @@ angular.module('fluro.access')
         .uniq()
         .value();
 
-        console.log('Has Permissions', permissions);
+       // console.log('Has Permissions', permissions);
         return _.contains(permissions, permission);
 
     }
@@ -146,6 +146,7 @@ angular.module('fluro.access')
                         title: realm.title,
                     }
                 })
+                .sortBy('title')
                 .value();
         }
 
@@ -295,10 +296,11 @@ angular.module('fluro.access')
         //Find any matches between this content
         var matchedAnyRealms = _.intersection(editAnyRealms, contentRealmIds);
 
-
+        /*
         if(definitionName == 'plan') {
             console.log('TESTING ACCESS', definitionName, 'EditAny Realms', editAnyRealms.length, 'MatchAnyRealms', matchedAnyRealms.length, contentRealmIds);
         }
+        */
 
         //We are allowed to edit anything in these realms
         //So return true
