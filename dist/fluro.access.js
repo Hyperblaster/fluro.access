@@ -48,7 +48,7 @@ angular.module('fluro.access')
         .value();
 
        // console.log('Has Permissions', permissions);
-        return _.contains(permissions, permission);
+        return _.includes(permissions, permission);
 
     }
 
@@ -105,11 +105,11 @@ angular.module('fluro.access')
         //Find all realms we can view any of this type
         return _.chain(permissionSets)
             .map(function(realmSet, key) {
-
                 var searchString = action;
-                if (_.contains(realmSet.permissions, searchString)) {
+                if (_.includes(realmSet.permissions, searchString)) {
                     return key.toString();
                 }
+
             })
             .compact()
             .value();
@@ -135,10 +135,10 @@ angular.module('fluro.access')
             var permissionSets = $rootScope.user.permissionSets;
 
             //Find all realms we can view any of this type
-            realms = _.chain(permissionSets)
+            var createableRealms = _.chain(permissionSets)
                 .filter(function(realmSet, key) {
                     var searchString = action;
-                    return _.contains(realmSet.permissions, searchString);
+                    return _.includes(realmSet.permissions, searchString);
                 })
                 .compact()
                 .map(function(realm) {
@@ -149,6 +149,11 @@ angular.module('fluro.access')
                 })
                 .sortBy('title')
                 .value();
+
+                
+            /////////////////////////////////
+
+            realms = createableRealms;
         }
 
         /////////////////////////////////
@@ -274,6 +279,20 @@ angular.module('fluro.access')
 
         ////////////////////////////////////////
 
+        //Realms works slightly differently
+        switch(definitionName) {
+            case 'realm':
+                if(author) {
+                    return controller.has('edit own realm');
+                } else {
+                    return controller.has('edit any realm');
+                }
+            break;
+            default:
+            break;
+        }
+
+        ////////////////////////////////////////
 
         //Get the realms we are allowed to work in
         var editAnyRealms = controller.retrieveActionableRealms('edit any ' + definitionName);
@@ -439,6 +458,22 @@ angular.module('fluro.access')
                 return true;
             }
         }
+
+        ////////////////////////////////////////
+
+        //Realms works slightly differently
+        switch(definitionName) {
+            case 'realm':
+                if(author) {
+                    return controller.has('delete own realm');
+                } else {
+                    return controller.has('delete any realm');
+                }
+            break;
+            default:
+            break;
+        }
+
 
         ////////////////////////////////////////
 
