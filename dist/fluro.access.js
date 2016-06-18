@@ -117,7 +117,7 @@ angular.module('fluro.access')
 
     /////////////////////////////////////////////////////
 
-    controller.retrieveSelectableRealms = function(action) {
+    controller.retrieveSelectableRealms = function(action, noCache) {
         if(!$rootScope.user) {
             return [];
         }
@@ -125,7 +125,9 @@ angular.module('fluro.access')
         var realms;
 
         if (controller.isFluroAdmin()) {
-            realms = FluroContent.resource('realm').query({
+
+
+            realms = FluroContent.resource('realm', false, noCache).query({
                 list: true,
                 sort:'title'
             });
@@ -203,6 +205,9 @@ angular.module('fluro.access')
                 realms = realms.concat(canEditOwnRealms);
                 break;
             default:
+
+
+
                 realms = controller.retrieveActionableRealms(perm);
                 break;
         }
@@ -230,6 +235,24 @@ angular.module('fluro.access')
             author = (item.author._id == $rootScope.user._id);
         } else {
             author = (item.author == $rootScope.user._id);
+        }
+
+        ////////////////////////////////////////
+
+        //Check if the user is an owner of the content
+        if(!author && item.owners && item.owners.length) {
+            
+            //The user is the owner if they are included in the owners
+            author = _.some(item.owners, function(owner) {
+
+                var ownerId = owner;
+
+                if(ownerId._id) {
+                    ownerId = ownerId._id;
+                }
+
+                return (ownerId == $rootScope.user._id);
+            });
         }
 
         ////////////////////////////////////////
@@ -299,17 +322,17 @@ angular.module('fluro.access')
         var editOwnRealms = controller.retrieveActionableRealms('edit own ' + definitionName);
 
         var contentRealmIds = _.map(item.realms, function(realm) {
+
             if (realm._id) {
                 return realm._id;
             }
+
             return realm;
         });
 
         if(!item.realms) {
             //No realms associated with this content
         }
-
-
 
         ////////////////////////////////////////
 
