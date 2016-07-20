@@ -56,6 +56,9 @@ angular.module('fluro.access')
 
     controller.canAccess = function(type) {
 
+          console.log('Can Access', type)
+
+          
         if(!$rootScope.user) {
             return false;
         }
