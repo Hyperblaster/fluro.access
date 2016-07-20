@@ -64,7 +64,6 @@ angular.module('fluro.access')
         }
 
         if (controller.isFluroAdmin()) {
-            console.log('Can Access', type, 'super admin')
             return true;
         }
 
