@@ -247,7 +247,7 @@ angular.module('fluro.access')
 
                 var ownerId = owner;
 
-                if(ownerId._id) {
+                if(ownerId && ownerId._id) {
                     ownerId = ownerId._id;
                 }
 
