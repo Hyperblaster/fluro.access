@@ -56,14 +56,15 @@ angular.module('fluro.access')
 
     controller.canAccess = function(type) {
 
-          console.log('Can Access', type)
-
           
+
+
         if(!$rootScope.user) {
             return false;
         }
 
         if (controller.isFluroAdmin()) {
+            console.log('Can Access', type, 'super admin')
             return true;
         }
 
@@ -86,6 +87,7 @@ angular.module('fluro.access')
         totalRealms = totalRealms.concat(canEditAnyRealms);
 
         if (totalRealms.length) {
+            console.log('Can Access REALMS', type, totalRealms)
             return true;
         } else {
             return false;
