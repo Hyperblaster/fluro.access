@@ -87,7 +87,6 @@ angular.module('fluro.access')
         totalRealms = totalRealms.concat(canEditAnyRealms);
 
         if (totalRealms.length) {
-            console.log('Can Access REALMS', type, totalRealms)
             return true;
         } else {
             return false;
