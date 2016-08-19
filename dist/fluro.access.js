@@ -282,7 +282,7 @@ angular.module('fluro.access')
 
         var contentAccountID = item.account;
         
-        if(contentAccountID._id) {
+        if(contentAccountID && contentAccountID._id) {
             contentAccountID = contentAccountID._id;
         }
 
@@ -493,7 +493,7 @@ angular.module('fluro.access')
 
         var contentAccountID = item.account;
         
-        if(contentAccountID._id) {
+        if(contentAccountID && contentAccountID._id) {
             contentAccountID = contentAccountID._id;
         }
 
