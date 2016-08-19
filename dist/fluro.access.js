@@ -49,15 +49,11 @@ angular.module('fluro.access')
 
        // console.log('Has Permissions', permissions);
         return _.includes(permissions, permission);
-
     }
 
     /////////////////////////////////////////////////////
 
     controller.canAccess = function(type) {
-
-          
-
 
         if(!$rootScope.user) {
             return false;
@@ -276,6 +272,26 @@ angular.module('fluro.access')
             return false;
         }
 
+        /////////////////////////////////////
+
+        var userAccountID = $rootScope.user.account;
+        
+        if(userAccountID) {
+            userAccountID = userAccountID._id;
+        }
+
+        var contentAccountID = item.account;
+        
+        if(contentAccountID) {
+            contentAccountID = contentAccountID._id;
+        }
+
+        if(contentAccountID && contentAccountID != userAccountID) {
+            return false;
+        }
+
+        /////////////////////////////////////
+
         if (controller.isFluroAdmin()) {
             return true;
         }
@@ -462,7 +478,28 @@ angular.module('fluro.access')
         if(!$rootScope.user) {
             return false
         }
+
+
+        /////////////////////////////////////
+
+        var userAccountID = $rootScope.user.account;
         
+        if(userAccountID) {
+            userAccountID = userAccountID._id;
+        }
+
+        var contentAccountID = item.account;
+        
+        if(contentAccountID) {
+            contentAccountID = contentAccountID._id;
+        }
+
+        if(contentAccountID && contentAccountID != userAccountID) {
+            return false;
+        }
+
+        /////////////////////////////////////
+
         if (controller.isFluroAdmin()) {
             return true;
         }
