@@ -282,7 +282,7 @@ angular.module('fluro.access')
 
         var contentAccountID = item.account;
         
-        if(contentAccountID) {
+        if(contentAccountID._id) {
             contentAccountID = contentAccountID._id;
         }
 
@@ -291,7 +291,7 @@ angular.module('fluro.access')
         }
 
 
-        console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
+        // console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
 
         /////////////////////////////////////
 
@@ -493,11 +493,11 @@ angular.module('fluro.access')
 
         var contentAccountID = item.account;
         
-        if(contentAccountID) {
+        if(contentAccountID._id) {
             contentAccountID = contentAccountID._id;
         }
 
-        console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
+        // console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
 
         if(contentAccountID && (contentAccountID != userAccountID)) {
             return false;
