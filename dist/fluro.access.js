@@ -286,7 +286,7 @@ angular.module('fluro.access')
             contentAccountID = contentAccountID._id;
         }
 
-        if(contentAccountID && contentAccountID != userAccountID) {
+        if(contentAccountID && (contentAccountID != userAccountID)) {
             return false;
         }
 
@@ -494,7 +494,7 @@ angular.module('fluro.access')
             contentAccountID = contentAccountID._id;
         }
 
-        if(contentAccountID && contentAccountID != userAccountID) {
+        if(contentAccountID && (contentAccountID != userAccountID)) {
             return false;
         }
 
