@@ -261,7 +261,7 @@ angular.module('fluro.access')
             
             //Check if the user has any permissions on the parent type that will allow them to access this content
             if(parentType && parentType.length) {
-                var includeDefined = controller.retrieveActionableRealms(permissionSets, 'include defined ' + parentType);
+                var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                 //Nope so stop here
                 if (!includeDefined.length) {
@@ -440,7 +440,7 @@ angular.module('fluro.access')
             //No realms associated with this content
             //Check if the user has any permissions on the parent type that will allow them to access this content
             if(parentType && parentType.length) {
-                var includeDefined = controller.retrieveActionableRealms(permissionSets, 'include defined ' + parentType);
+                var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                 //Nope so stop here
                 if (!includeDefined.length) {
@@ -555,7 +555,7 @@ angular.module('fluro.access')
             //No realms associated with this content
             //Check if the user has any permissions on the parent type that will allow them to access this content
             if(parentType && parentType.length) {
-                var includeDefined = controller.retrieveActionableRealms(permissionSets, 'include defined ' + parentType);
+                var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                 //Nope so stop here
                 if (!includeDefined.length) {
@@ -690,7 +690,7 @@ angular.module('fluro.access')
             //No realms associated with this content
             //Check if the user has any permissions on the parent type that will allow them to access this content
             if(parentType && parentType.length) {
-                var includeDefined = controller.retrieveActionableRealms(permissionSets, 'include defined ' + parentType);
+                var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                 //Nope so stop here
                 if (!includeDefined.length) {
