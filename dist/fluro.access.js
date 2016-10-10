@@ -439,6 +439,7 @@ angular.module('fluro.access')
             ////////////////////////////////////////
 
             if (!item.realms) {
+                console.log('Check thingamooooos', parentType)
                 //No realms associated with this content
                 //Check if the user has any permissions on the parent type that will allow them to access this content
                 if (parentType && parentType.length) {
