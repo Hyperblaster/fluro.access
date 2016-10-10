@@ -456,8 +456,6 @@ angular.module('fluro.access')
                         editOwnRealms = editOwnRealms.concat(canEditOwnParentRealms);
                     }
                 }
-
-
             }
 
             ////////////////////////////////////////
