@@ -438,7 +438,7 @@ angular.module('fluro.access')
 
             ////////////////////////////////////////
 
-            if (!item.realms) {
+            // if (!editAnyRealms.length) {
                 console.log('Check thingamooooos', parentType)
                 //No realms associated with this content
                 //Check if the user has any permissions on the parent type that will allow them to access this content
@@ -456,7 +456,7 @@ angular.module('fluro.access')
                         editOwnRealms = editOwnRealms.concat(canEditOwnParentRealms);
                     }
                 }
-            }
+            // }
 
             ////////////////////////////////////////
 
@@ -554,7 +554,7 @@ angular.module('fluro.access')
 
             ////////////////////////////////////////
 
-            if (!item.realms) {
+            // if (!item.realms) {
                 //No realms associated with this content
                 //Check if the user has any permissions on the parent type that will allow them to access this content
                 if (parentType && parentType.length) {
@@ -572,7 +572,7 @@ angular.module('fluro.access')
                         combinedOwnRealms = combinedOwnRealms.concat(canEditOwnParentRealms, canViewOwnParentRealms);
                     }
                 }
-            }
+            // }
 
             ////////////////////////////////////////
 
@@ -688,7 +688,7 @@ angular.module('fluro.access')
 
             ////////////////////////////////////////
 
-            if (!item.realms) {
+            // if (!item.realms) {
                 //No realms associated with this content
                 //Check if the user has any permissions on the parent type that will allow them to access this content
                 if (parentType && parentType.length) {
@@ -704,7 +704,7 @@ angular.module('fluro.access')
                         deleteOwnRealms = deleteOwnRealms.concat(canDeleteOwnParentRealms);
                     }
                 }
-            }
+            // }
 
             ////////////////////////////////////////
 
