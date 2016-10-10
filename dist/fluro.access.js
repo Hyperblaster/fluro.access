@@ -96,6 +96,7 @@ angular.module('fluro.access')
             //with the include defined permission
             if(parentType && parentType.length) {
 
+                console.log('Check parent type')
                 var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                 //Nope so stop here
@@ -127,8 +128,6 @@ angular.module('fluro.access')
                 if (totalRealms.length) {
                     return true;
                 }
-            } else {
-                console.log('Parent Type', type, 'was not provided to access check function')
             }
 
 
