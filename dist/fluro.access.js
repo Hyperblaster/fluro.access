@@ -213,7 +213,7 @@ angular.module('fluro.access')
     /////////////////////////////////////////////////////
 
     //Function to check if this user has this permission
-    controller.can = function(action, type) {
+    controller.can = function(action, type, parentType) {
 
         if(!$rootScope.user) {
             return false;
@@ -251,9 +251,6 @@ angular.module('fluro.access')
                 realms = realms.concat(canEditOwnRealms);
                 break;
             default:
-
-
-
                 realms = controller.retrieveActionableRealms(perm);
                 break;
         }
@@ -261,6 +258,45 @@ angular.module('fluro.access')
         if (realms.length) {
             return true;
         } else {
+            
+            //Check if the user has any permissions on the parent type that will allow them to access this content
+            if(parentType && parentType.length) {
+                var includeDefined = controller.retrieveActionableRealms(permissionSets, 'include defined ' + parentType);
+
+                //Nope so stop here
+                if (!includeDefined.length) {
+                    return false;
+                }
+
+                switch (action) {
+                    case 'view any':
+                        var canViewAnyParentRealms = controller.retrieveActionableRealms('view any ' + parentType);
+                        var canEditAnyParentRealms = controller.retrieveActionableRealms('edit any ' + parentType);
+
+                        //Combine the realms
+                        realms = realms.concat(canViewAnyRealms);
+                        realms = realms.concat(canEditAnyRealms);
+                        break;
+                    case 'view own':
+                        var canViewOwnParentRealms = controller.retrieveActionableRealms('view own ' + parentType);
+                        var canEditOwnParentRealms = controller.retrieveActionableRealms('edit own ' + parentType);
+
+                        //Combine the realms
+                        realms = realms.concat(canViewOwnParentRealms);
+                        realms = realms.concat(canEditOwnParentRealms);
+                        break;
+                    default:
+                        realms = controller.retrieveActionableRealms(action + ' ' + parentType);
+                        break;
+                }
+
+                if (realms.length) {
+                    console.log('Return true because of parent permissions')
+                    return true;
+                }
+
+            }
+
             return false;
         }
     }
