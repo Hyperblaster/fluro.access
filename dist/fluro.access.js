@@ -47,7 +47,7 @@ angular.module('fluro.access')
                 .uniq()
                 .value();
 
-            // console.log('Has Permissions', permissions);
+            // //console.log('Has Permissions', permissions);
             return _.includes(permissions, permission);
         }
 
@@ -96,15 +96,15 @@ angular.module('fluro.access')
                 //with the include defined permission
                 if (parentType && parentType.length) {
 
-                    // console.log('Check parent type')
+                    // //console.log('Check parent type')
                     var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                     //Nope so stop here
                     if (!includeDefined.length) {
-                        // console.log('Include defined', parentType, ' is not set')
+                        // //console.log('Include defined', parentType, ' is not set')
                         return false;
                     } else {
-                        // console.log('Include defined', parentType, ' is set');
+                        // //console.log('Include defined', parentType, ' is set');
                     }
 
                     //Check on the parent type
@@ -124,7 +124,7 @@ angular.module('fluro.access')
                     totalRealms = totalRealms.concat(canEditOwnRealmsOnParentType);
                     totalRealms = totalRealms.concat(canEditAnyRealmsOnParentType);
 
-                    // console.log('Checking parentType checks for', parentType, totalRealms)
+                    // //console.log('Checking parentType checks for', parentType, totalRealms)
                     if (totalRealms.length) {
                         return true;
                     }
@@ -291,7 +291,7 @@ angular.module('fluro.access')
                     }
 
                     if (realms.length) {
-                        console.log('Return true because of parent permissions')
+                        //console.log('Return true because of parent permissions')
                         return true;
                     }
                 }
@@ -373,7 +373,7 @@ angular.module('fluro.access')
             }
 
 
-            // console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
+            // //console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
 
             /////////////////////////////////////
 
@@ -439,7 +439,7 @@ angular.module('fluro.access')
             ////////////////////////////////////////
 
             // if (!editAnyRealms.length) {
-                console.log('Check thingamooooos', parentType)
+                //console.log('Check thingamooooos', parentType)
                 //No realms associated with this content
                 //Check if the user has any permissions on the parent type that will allow them to access this content
                 if (parentType && parentType.length) {
@@ -447,7 +447,7 @@ angular.module('fluro.access')
 
 
                     if (includeDefined.length) {
-                        console.log('CHECKING PARENT REALMS MAN', parentType);
+                        //console.log('CHECKING PARENT REALMS MAN', parentType);
 
                         var canEditAnyParentRealms = controller.retrieveActionableRealms('edit any ' + parentType);
                         editAnyRealms = editAnyRealms.concat(canEditAnyParentRealms);
@@ -465,7 +465,7 @@ angular.module('fluro.access')
 
             /*
             if(definitionName == 'plan') {
-                console.log('TESTING ACCESS', definitionName, 'EditAny Realms', editAnyRealms.length, 'MatchAnyRealms', matchedAnyRealms.length, contentRealmIds);
+                //console.log('TESTING ACCESS', definitionName, 'EditAny Realms', editAnyRealms.length, 'MatchAnyRealms', matchedAnyRealms.length, contentRealmIds);
             }
             */
 
@@ -561,7 +561,7 @@ angular.module('fluro.access')
                     var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                     if (includeDefined.length) {
-                        console.log('CHECKING PARENT REALMS MAN', parentType);
+                        //console.log('CHECKING PARENT REALMS MAN', parentType);
 
                         var canEditAnyParentRealms = controller.retrieveActionableRealms('edit any ' + parentType);
                         var canViewAnyParentRealms = controller.retrieveActionableRealms('view any ' + parentType);
@@ -625,7 +625,7 @@ angular.module('fluro.access')
                 contentAccountID = contentAccountID._id;
             }
 
-            // console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
+            // //console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
 
             if (contentAccountID && (contentAccountID != userAccountID)) {
                 return false;
@@ -697,7 +697,7 @@ angular.module('fluro.access')
                     var includeDefined = controller.retrieveActionableRealms('include defined ' + parentType);
 
                     if (includeDefined.length) {
-                        console.log('CHECKING PARENT REALMS MAN', parentType);
+                        //console.log('CHECKING PARENT REALMS MAN', parentType);
 
                         var canDeleteAnyParentRealms = controller.retrieveActionableRealms('delete any ' + parentType);
                         deleteAnyRealms = deleteAnyRealms.concat(canDeleteAnyParentRealms);
