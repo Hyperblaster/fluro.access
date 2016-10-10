@@ -638,9 +638,11 @@ angular.module('fluro.access')
             }
 
             var definitionName = item._type;
+            var parentType;
 
             if (item.definition) {
                 definitionName = item.definition;
+                parentType = item._type;
             }
 
             ////////////////////////////////////////
