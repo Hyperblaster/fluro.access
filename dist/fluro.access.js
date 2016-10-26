@@ -137,6 +137,8 @@ angular.module('fluro.access')
 
         /////////////////////////////////////////////////////
 
+        // FluroAccess.retrieveActionableRealms('create persona');
+        
         controller.retrieveActionableRealms = function(action) {
 
             if (!$rootScope.user) {
@@ -169,6 +171,9 @@ angular.module('fluro.access')
             }
 
             var realms;
+
+
+            console.log('Searching for', action);
 
             if (controller.isFluroAdmin()) {
 
