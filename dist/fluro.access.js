@@ -165,7 +165,7 @@ angular.module('fluro.access')
 
         /////////////////////////////////////////////////////
 
-        controller.retrieveSelectableRealms = function(action, noCache) {
+        controller.retrieveSelectableRealms = function(action, type, noCache) {
             if (!$rootScope.user) {
                 return [];
             }
@@ -173,7 +173,7 @@ angular.module('fluro.access')
             var realms;
 
 
-            console.log('Searching for', action);
+            // console.log('Searching for', action);
 
             if (controller.isFluroAdmin()) {
 
@@ -190,7 +190,7 @@ angular.module('fluro.access')
                 //Find all realms we can view any of this type
                 var createableRealms = _.chain(permissionSets)
                     .filter(function(realmSet, key) {
-                        var searchString = action;
+                        var searchString = action + ' ' + type;
                         return _.includes(realmSet.permissions, searchString);
                     })
                     .compact()
