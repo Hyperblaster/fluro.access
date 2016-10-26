@@ -165,7 +165,7 @@ angular.module('fluro.access')
 
         /////////////////////////////////////////////////////
 
-        controller.retrieveSelectableRealms = function(action, type, noCache) {
+        controller.retrieveSelectableRealms = function(action, type, parentType, noCache) {
             if (!$rootScope.user) {
                 return [];
             }
@@ -184,14 +184,41 @@ angular.module('fluro.access')
                 });
             } else {
 
+
+
                 //Get the permission sets
                 var permissionSets = $rootScope.user.permissionSets;
+
+                //Permission String to search for
+                var searchString = action + ' ' + type;
+
+                ////////////////////////////////////////////////////
 
                 //Find all realms we can view any of this type
                 var createableRealms = _.chain(permissionSets)
                     .filter(function(realmSet, key) {
-                        var searchString = action + ' ' + type;
-                        return _.includes(realmSet.permissions, searchString);
+                        
+                        var includesType = _.includes(realmSet.permissions, searchString);
+                        var includedFromParent;
+
+
+                        //If the parent type was provided also
+                        if (parentType && parentType.length) {
+
+                            //Check if we can action the parent type
+                            var includesParent = _.includes(realmSet.permissions, action + ' ' + parentType);
+
+                            //Check if we can action variants of the parent type
+                            var includesVariations = _.includes(realmSet.permissions, 'include defined ' + parentType);
+
+                            //Include this realm if both of the above return true
+                            includedFromParent = (includesParent && includesVariations);
+
+                            console.log('Includes parent', includedFromParent);
+                        }
+
+                         
+                        return (includesType || includedFromParent);
                     })
                     .compact()
                     .map(function(realm) {
