@@ -214,7 +214,7 @@ angular.module('fluro.access')
                             //Include this realm if both of the above return true
                             includedFromParent = (includesParent && includesVariations);
 
-                            console.log('Includes parent', includedFromParent);
+                            // console.log('Includes parent', includedFromParent);
                         }
 
                          
