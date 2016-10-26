@@ -221,12 +221,14 @@ angular.module('fluro.access')
                         return (includesType || includedFromParent);
                     })
                     .compact()
-                    .map(function(realm) {
-                        return {
-                            _id: realm._id,
-                            title: realm.title,
-                        }
-                    })
+                    // .map(function(realm) {
+                    //     return {
+                    //         _id: realm._id,
+                    //         title: realm.title,
+                    //         bgColor:realm.bgColor,
+                    //         color:realm.color
+                    //     }
+                    // })
                     .sortBy('title')
                     .value();
 
