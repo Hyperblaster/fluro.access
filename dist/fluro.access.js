@@ -527,7 +527,7 @@ angular.module('fluro.access')
             }
 
 
-            console.log('No Realms')
+            console.log('No Realms', contentRealmIds, editOwnRealms, matchedOwnRealms, matchedAnyRealms);
         }
 
 
