@@ -345,6 +345,8 @@ angular.module('fluro.access')
             //Check if the user is the author
             var author = false;
 
+            ////////////////////////////////////////
+
             //Only allow if author of the content
             if (_.isObject(item.author)) {
                 author = (item.author._id == $rootScope.user._id);
@@ -384,7 +386,13 @@ angular.module('fluro.access')
 
         controller.canEditItem = function(item, user) {
 
+            if (!item) {
+                console.log('No item');
+                return false;
+            }
+
             if (!$rootScope.user) {
+                console.log('No user')
                 return false;
             }
 
@@ -406,17 +414,10 @@ angular.module('fluro.access')
                 return false;
             }
 
-
-            // //console.log('ACCOUNT CHECK', contentAccountID, userAccountID);
-
             /////////////////////////////////////
 
             if (controller.isFluroAdmin()) {
                 return true;
-            }
-
-            if (!item) {
-                return false;
             }
 
             var definitionName = item._type;
@@ -524,6 +525,9 @@ angular.module('fluro.access')
                     return true;
                 }
             }
+
+
+            console.log('No Realms')
         }
 
 
