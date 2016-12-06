@@ -40,6 +40,18 @@ module.exports = function(grunt) {
             }
         },
 
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            app: {
+                files: {
+                    'dist/fluro.access.js': ['dist/fluro.access.js'],
+                }
+            }
+        },
+
+
         //Concatenate all the build js files
         concat: {
             js: {
@@ -49,7 +61,8 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                mangle: false
+                mangle: true,
+                compress:true,
             },
             build: {
                 src: [
@@ -63,7 +76,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
     //grunt.registerTask('build', ['copy:build', 'htmlmin:build', 'uglify:build', 'cssmin:build']);
-    grunt.registerTask('compile', ['ngtemplates', 'concat', 'uglify']);
+    grunt.registerTask('compile', ['ngtemplates', 'concat', 'ngAnnotate', 'uglify']);
 
     //'autoprefixer', 'cssmin'
 

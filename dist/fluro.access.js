@@ -4,7 +4,7 @@ angular.module('fluro.access', [
 	'fluro.content'
 ]);
 angular.module('fluro.access')
-    .service('FluroAccess', function($rootScope, $q, FluroContent) {
+    .service('FluroAccess', ['$rootScope', '$q', 'FluroContent', function($rootScope, $q, FluroContent) {
 
         var controller = {}
 
@@ -793,4 +793,4 @@ angular.module('fluro.access')
         return controller;
 
 
-    });
+    }]);
