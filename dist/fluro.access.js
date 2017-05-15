@@ -82,6 +82,7 @@ angular.module('fluro.access')
 
             //Get all the realms
             var totalRealms = [];
+            totalRealms = totalRealms.concat(canCreateRealms);
             totalRealms = totalRealms.concat(canViewOwnRealms);
             totalRealms = totalRealms.concat(canViewAnyRealms);
             totalRealms = totalRealms.concat(canEditOwnRealms);
