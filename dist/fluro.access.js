@@ -40,10 +40,11 @@ angular.module('fluro.access')
             var permissionSets = $rootScope.user.permissionSets;
 
             var permissions = _.chain(permissionSets)
-                .map(function(permissionSet) {
-                    return permissionSet.permissions;
-                })
-                .flatten()
+                // .map(function(permissionSet) {
+                //     return permissionSet.permissions;
+                // })
+                .map(retrieveSubRealms)
+                .flattenDeep()
                 .uniq()
                 .value();
 
@@ -75,7 +76,7 @@ angular.module('fluro.access')
             var canEditAnyRealms = controller.retrieveActionableRealms('edit any ' + type);
 
 
-
+            // console.log('GET ALL REALMS', canCreateRealms);
 
             // var canEditAnyRealms = controller.retrieveActionableRealms('edit any ' + type);
 
@@ -260,9 +261,10 @@ angular.module('fluro.access')
 
                         return (includesType || includedFromParent);
                     })
-                    .map(function(realmSet) {
-                        return retrieveSubRealms(realmSet);
-                    })
+                    .map(retrieveSubRealms)
+                    // .map(function(realmSet) {
+                    //     return retrieveSubRealms(realmSet);
+                    // })
                     .flattenDeep()
                     .compact()
                     // .map(function(realm) {
