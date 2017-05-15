@@ -149,6 +149,7 @@ angular.module('fluro.access')
                 })
 
             }
+            
             additional.push(String(set._id));
         }
 
@@ -159,7 +160,7 @@ angular.module('fluro.access')
         //so you a flat array of realm ids that are included
         function retrieveSubRealms(set) {
 
-            var results = [set._id];
+            var results = [set];
 
             if (set.children && set.children.length) {
                 _.each(set.children, function(child) {
@@ -255,11 +256,10 @@ angular.module('fluro.access')
 
                             //Include this realm if both of the above return true
                             includedFromParent = (includesParent && includesVariations);
-
-                            // //console.log('Includes parent', includedFromParent);
                         }
 
-
+                        //Return true if the realm includes the permissions
+                        //or if it is allowed from the primitive undefined type
                         return (includesType || includedFromParent);
                     })
                     .map(retrieveSubRealms)
