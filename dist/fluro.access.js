@@ -189,6 +189,8 @@ angular.module('fluro.access')
             //Get the permission sets
             var permissionSets = $rootScope.user.permissionSets;
 
+            console.log('GET KEYS',  $rootScope.user.permissionSets);
+
             //Find all realms we can view any of this type
             return _.chain(permissionSets)
                 .map(function(realmSet, key) {
@@ -199,7 +201,7 @@ angular.module('fluro.access')
                         var keys = [];
                         retrieveKeys(realmSet, keys);
 
-                        console.log('GET KEYS', realmSet, realmSet.children,  keys);
+                        
 
                         return keys;
                         // return key.toString();
