@@ -199,7 +199,7 @@ angular.module('fluro.access')
                         var keys = [];
                         retrieveKeys(realmSet, keys);
 
-                        console.log('GET KEYS', realmSet, keys);
+                        console.log('GET KEYS', realmSet, realmSet.children,  keys);
 
                         return keys;
                         // return key.toString();
