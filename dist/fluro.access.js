@@ -162,6 +162,8 @@ angular.module('fluro.access')
 
             var results = [set];
 
+            console.log('CHECK SET CHILDREN', set);
+
             if (set.children && set.children.length) {
                 _.each(set.children, function(child) {
                    var additional = retrieveSubRealms(child);
@@ -198,7 +200,7 @@ angular.module('fluro.access')
                         retrieveKeys(realmSet, keys);
 
                         console.log('GET KEYS', realmSet, keys);
-                        
+
                         return keys;
                         // return key.toString();
                     }
@@ -222,8 +224,6 @@ angular.module('fluro.access')
             // //console.log('Searching for', action);
 
             if (controller.isFluroAdmin()) {
-
-
                 realms = FluroContent.resource('realm', false, noCache).query({
                     list: true,
                     sort: 'title'
@@ -261,9 +261,12 @@ angular.module('fluro.access')
                             includedFromParent = (includesParent && includesVariations);
                         }
 
+                        var shouldInclude = (includesType || includedFromParent)
+
+                        console.log('SHOULD INCLUDE', shouldInclude, realmSet);
                         //Return true if the realm includes the permissions
                         //or if it is allowed from the primitive undefined type
-                        return (includesType || includedFromParent);
+                        return shouldInclude;
                     })
                     .map(retrieveSubRealms)
                     // .map(function(realmSet) {
@@ -283,6 +286,7 @@ angular.module('fluro.access')
                     .value();
 
 
+                    console.log('CREATEABLE REALMS', createableRealms);
                 /////////////////////////////////
 
                 realms = createableRealms;
