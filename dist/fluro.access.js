@@ -189,7 +189,7 @@ angular.module('fluro.access')
             //Get the permission sets
             var permissionSets = $rootScope.user.permissionSets;
 
-            console.log('GET KEYS',  $rootScope.user.permissionSets);
+            console.log('SAMPLE FIND KEYS',  $rootScope.user.permissionSets);
 
             //Find all realms we can view any of this type
             return _.chain(permissionSets)
