@@ -187,8 +187,22 @@ angular.module('fluro.access')
             //Get the permission sets
             var permissionSets = $rootScope.user.permissionSets;
 
+            // var permissions = _.chain(permissionSets)
+            //     // .map(function(permissionSet) {
+            //     //     return permissionSet.permissions;
+            //     // })
+            //     .map(retrieveSubRealms)
+            //     .flattenDeep()
+            //     .uniq()
+            //     .value();
+
+
+
             //Find all realms we can view any of this type
             return _.chain(permissionSets)
+                .map(retrieveSubRealms)
+                .flattenDeep()
+                .uniq()
                 .map(function(realmSet, key) {
                     var searchString = action;
                     var hasPermission = _.includes(realmSet.permissions, searchString);
