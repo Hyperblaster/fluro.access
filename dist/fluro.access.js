@@ -232,7 +232,7 @@ angular.module('fluro.access')
                 //     sort: 'title'
                 // });
 
-                realms = FluroContent.endpoint('tree', false, noCache).query({
+                realms = FluroContent.endpoint('realm/tree', false, noCache).query({
                     // list: true,
                     // sort: 'title'
                 });
