@@ -226,7 +226,7 @@ angular.module('fluro.access')
 
             if (controller.isFluroAdmin()) {
 
-                // console.log('Load all realms!! cos super user');
+                console.log('Load all realms!! cos super user');
                 // realms = FluroContent.resource('realm', false, noCache).query({
                 //     list: true,
                 //     sort: 'title'
