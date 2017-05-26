@@ -11,11 +11,10 @@ angular.module('fluro.access')
         /////////////////////////////////////////////////////
 
         controller.isFluroAdmin = function() {
-
             if (!$rootScope.user) {
                 return false;
             }
-            return ($rootScope.user.accountType == 'administrator');
+            return ($rootScope.user.accountType == 'administrator' && !$rootScope.user.pretender);
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -226,6 +225,8 @@ angular.module('fluro.access')
             // ////console.log('Searching for', action);
 
             if (controller.isFluroAdmin()) {
+
+                console.log('Load all realms!! cos super user');
                 realms = FluroContent.resource('realm', false, noCache).query({
                     list: true,
                     sort: 'title'
