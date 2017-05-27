@@ -247,7 +247,7 @@ angular.module('fluro.access')
                 ////////////////////////////////////////////////////
 
                 //Find all realms we can view any of this type
-                var realmTree = _.chain(permissionSets)
+                var selectableRealms = _.chain(permissionSets)
                     .filter(function(realmSet, key) {
 
                         //Find all permission sets where the user has the requested permission
@@ -278,7 +278,13 @@ angular.module('fluro.access')
                     .map(retrieveSubRealms)
                     .flattenDeep()
                     .compact()
+                    .value();
 
+                /////////////////////////////////////
+                /////////////////////////////////////
+
+                //Now map it to a tree
+                var realmTree = _.chain(selectableRealms)
                     .sortBy(function(realm) {
                         if (realm.trail && realm.trail.length) {
                             return realm.trail.length;
