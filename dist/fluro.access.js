@@ -3,7 +3,6 @@
 angular.module('fluro.access', [
 	'fluro.content'
 ]);
-
 angular.module('fluro.access')
     .service('FluroAccess', ['$rootScope', '$q', 'FluroContent', function($rootScope, $q, FluroContent) {
 
@@ -273,34 +272,45 @@ angular.module('fluro.access')
                         var shouldInclude = (includesType || includedFromParent)
                         return shouldInclude;
                     })
-                    
                     //Recursively get all the child realms
                     .map(retrieveSubRealms)
                     .flattenDeep()
-                    .compact()
                     .value();
 
                 /////////////////////////////////////
 
                 //Create a copy of the realm so we aren't mucking around with original user object
-                var cleanArray = _.map(selectableRealms, function(realm) {
-                    return angular.copy(realm);
-                });
+                var cleanArray = angular.copy(selectableRealms);
 
                 /////////////////////////////////////
                 /////////////////////////////////////
-
+                /////////////////////////////////////
+                /////////////////////////////////////
                 //Now map all realms to a tree structure
                 var realmTree = _.chain(cleanArray)
 
                 //Now sort them all by length of trail, top level down to the furthest branch
                     .sortBy(function(realm) {
+
                         if (realm.trail && realm.trail.length) {
                             return realm.trail.length;
                         } else {
                             return 0;
                         }
                     })
+
+                    // .map(function(realm) {
+
+                    //     var trailLength = 0;
+                    //     if(realm.trail) {
+                    //         trailLength = realm.trail.length;
+                    //     }
+
+                    //     // var path = _.map(realm.trail).join('/');
+
+                    //     console.log('TRACE -', trailLength, realm.title);
+                    //     return realm;
+                    // })
 
                     //Now organise them one by one going down all the branches
                     .reduce(function(results, realm) {
@@ -320,8 +330,6 @@ angular.module('fluro.access')
                             //to the top level for this user as it's the highest
                             //clearance they have
                             if (!parent) {
-                                //Clean up
-                                delete realm.trail;
                                 //Push to the set and return
                                 results.push(realm);
                                 return results;
@@ -333,15 +341,17 @@ angular.module('fluro.access')
                                 parent.children = []
                             }
 
-                            //Clean up the realm
-                            delete realm.trail;
+                            //Check if this realm has not been included yet
+                            var alreadyIncluded = (parent.children.indexOf(realm) != -1)
 
-                            //Add to the set
-                            parent.children.push(realm);
-                            //Sort all children by title
-                            parent.children = _.sortBy(parent.children, function(child) {
-                                return child.title;
-                            });
+                            //If it hasnt then add it in
+                            if(!alreadyIncluded) {
+                                 //Add to the set and order by title
+                                parent.children.push(realm);
+                                parent.children = _.sortBy(parent.children, function(child) {
+                                    return child.title;
+                                });
+                            }
                         } else {
                             //No trail so just push the realm to the top level
                             results.push(realm);
