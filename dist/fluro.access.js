@@ -857,22 +857,6 @@ angular.module('fluro.access')
 
             ////////////////////////////////////////
 
-            //Realms works slightly differently
-            switch (definitionName) {
-                case 'realm':
-                    if (author) {
-                        return controller.has('delete own realm');
-                    } else {
-                        return controller.has('delete any realm');
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-
-            ////////////////////////////////////////
-
             //Get the realms we are allowed to work in
             var deleteAnyRealms = controller.retrieveActionableRealms('delete any ' + definitionName);
             var deleteOwnRealms = controller.retrieveActionableRealms('delete own ' + definitionName);
