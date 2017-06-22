@@ -46,7 +46,7 @@ angular.module('fluro.access')
                 .reduce(function(results, set, key) {
 
                     results.push(set.permissions);
-                    
+
                     return results;
                 }, [])
                 // .map(retrieveSubRealms)
@@ -55,8 +55,7 @@ angular.module('fluro.access')
                 .uniq()
                 .value();
 
-            console.log('Has Permissions', permissions, permission);
-            return _.some(permissions, permission);
+            return _.includes(permissions, permission);
         }
 
         /////////////////////////////////////////////////////
