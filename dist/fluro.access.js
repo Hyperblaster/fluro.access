@@ -43,15 +43,14 @@ angular.module('fluro.access')
             var permissionSets = $rootScope.user.permissionSets;
 
             var permissions = _.chain(permissionSets)
-                // .map(function(permissionSet) {
-                //     return permissionSet.permissions;
-                // })
-                .map(retrieveSubRealms)
+                .map('permissions')
+                // .map(retrieveSubRealms)
                 .flattenDeep()
+                .compact()
                 .uniq()
                 .value();
 
-            // console.log('Has Permissions', permissions);
+            console.log('Has Permissions', permissions, permission);
             return _.some(permissions, permission);
         }
 
