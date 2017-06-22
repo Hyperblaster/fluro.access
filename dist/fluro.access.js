@@ -36,6 +36,10 @@ angular.module('fluro.access')
                 return false;
             }
 
+            if (controller.isFluroAdmin()) {
+                return true;
+            }
+
             var permissionSets = $rootScope.user.permissionSets;
 
             var permissions = _.chain(permissionSets)
