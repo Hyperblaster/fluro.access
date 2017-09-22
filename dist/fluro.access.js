@@ -550,14 +550,13 @@ angular.module('fluro.access')
 
         controller.canAccessChat = function(item, basicType, definedType) {
 
-
-            if(!basicType) {
+            if(!basicType || !basicType.length) {
                 basicType = item._type;
             }
 
             ////////////////////////////////////////////////////
             
-            if(!definedType) {
+            if(!definedType || !definedType.length) {
                 if (item.definition && item.definition.length) {
                     definedType = item.definition;
                 } else {
@@ -586,9 +585,12 @@ angular.module('fluro.access')
             //Check if the user can view the chat
             var canViewChat = _.intersection(chatViewRealms, contentRealmIds).length;
 
-            return (canChat || canViewChat || canEditContent);
-
-
+            
+            if(canChat || canViewChat || canEditContent) {
+                return true;
+            } else {
+                return false;
+            };
         }
 
         /////////////////////////////////////////////////////
