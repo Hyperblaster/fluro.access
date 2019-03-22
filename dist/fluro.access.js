@@ -298,6 +298,7 @@ angular.module('fluro.access')
                             'title',
                             'definition',
                             '_discriminator',
+                            '_discriminatorType',
                             'trail',
                             'color',
                             'bgColor',
