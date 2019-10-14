@@ -694,6 +694,17 @@ angular.module('fluro.access')
                 return true;
             }
 
+
+            ////////////////////////////////////////////////////
+
+            if (item._type && item._type != 'realm') {
+                if (item.realms && !item.realms.length) {
+                    return true;
+                }
+            }
+
+
+
             var definitionName = item._type;
             var parentType;
 
@@ -823,6 +834,14 @@ angular.module('fluro.access')
 
             if (controller.isFluroAdmin()) {
                 return true;
+            }
+
+            ////////////////////////////////////////////////////
+
+            if (item._type && item._type != 'realm') {
+                if (item.realms && !item.realms.length) {
+                    return true;
+                }
             }
 
             var definitionName = item._type;
@@ -977,6 +996,14 @@ angular.module('fluro.access')
 
             if (controller.isFluroAdmin()) {
                 return true;
+            }
+
+            ////////////////////////////////////////////////////
+
+            if (item._type && item._type != 'realm') {
+                if (item.realms && !item.realms.length) {
+                    return true;
+                }
             }
 
             var definitionName = item._type;
