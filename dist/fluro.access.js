@@ -715,7 +715,7 @@ angular.module('fluro.access')
                     return id;
                 })
                 .compact()
-                .value(), !$rootScope.user.contacts);
+                .value(), $rootScope.user.contacts);
 
 
                 return (intersect && intersect.length);
